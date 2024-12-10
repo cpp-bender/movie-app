@@ -10,22 +10,28 @@ eventListeners();
 
 function eventListeners() {
   form.addEventListener("submit", addFilm);
+  document.addEventListener("DOMContentLoaded", loadAllFilms);
+}
+
+function loadAllFilms() {
+    let films = storage.getFilmsFromStorage();
+    for(let i = 0; i<films.length; i++){
+        ui.addFilmToUI(films[i]);
+    }
 }
 
 function addFilm(e) {
+  e.preventDefault();
   const t = title.value;
   const d = director.value;
   const u = url.value;
   if (t === "" || director === "" || url === "") {
-    // throw error here
     ui.displayMessages("Error occured", "danger");
   } else {
     const newFilm = new Film(t, d, u);
-
     ui.addFilmToUI(newFilm);
     storage.addFilmToStorage(newFilm);
     ui.displayMessages("Success", "success");
+    ui.clearInputs(title, director, url);
   }
-  ui.clearInputs(title, director, url);
-  e.preventDefault();
 }
