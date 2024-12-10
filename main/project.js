@@ -17,11 +17,13 @@ function addFilm(e) {
   const u = url.value;
   if (t === "" || director === "" || url === "") {
     // throw error here
+    ui.displayMessages("Error occured", "danger");
   } else {
     const newFilm = new Film(t, d, u);
 
     ui.addFilmToUI(newFilm);
-    ui.clearInputs(title, director, url);
+    ui.displayMessages("Success", "success");
   }
+  ui.clearInputs(title, director, url);
   e.preventDefault();
 }

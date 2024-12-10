@@ -16,3 +16,14 @@ UI.prototype.clearInputs = function (a, b, c) {
   b.value = "";
   c.value = "";
 };
+
+UI.prototype.displayMessages = function(message, type){
+    const cardBody = document.querySelector(".card-body");
+    const alert = document.createElement("div");
+    alert.className = `alert alert-${type}`;
+    alert.textContent = message;
+    cardBody.appendChild(alert);
+    setTimeout(() => {
+        alert.remove();
+    }, 1000);
+}
