@@ -5,9 +5,9 @@ const url = document.querySelector("#url");
 const cardBody = document.querySelectorAll(".card-body")[1];
 const clearFilms = document.getElementById("clear-films");
 
-eventListeners();
+initEventListeners();
 
-function eventListeners() {
+function initEventListeners() {
   form.addEventListener("submit", addFilm);
   document.addEventListener("DOMContentLoaded", loadAllFilms);
   cardBody.addEventListener("click", deleteFilm);
@@ -24,10 +24,7 @@ function clearAllFilms() {
 function deleteFilm(e) {
   if (e.target.id === "delete-film") {
     UI.deleteFilmFromUI(e.target);
-    const t =
-      e.target.parentElement.previousElementSibling.previousElementSibling
-        .textContent;
-        Storage.deleteFilmFromStorage(t);
+    Storage.deleteFilmFromStorage(e.target);
     UI.displayMessages("Deleted", "success");
   }
 }
