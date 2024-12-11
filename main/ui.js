@@ -27,3 +27,7 @@ UI.prototype.displayMessages = function (message, type) {
     alert.remove();
   }, 1000);
 };
+
+UI.prototype.deleteFilmFromUI = function(target){
+  target.parentElement.parentElement.remove();
+}

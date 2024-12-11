@@ -2,6 +2,7 @@ const form = document.getElementById("film-form");
 const title = document.querySelector("#title");
 const director = document.querySelector("#director");
 const url = document.querySelector("#url");
+const cardBody = document.querySelectorAll(".card-body")[1]; 
 
 const ui = new UI();
 const storage = new Storage();
@@ -11,6 +12,13 @@ eventListeners();
 function eventListeners() {
   form.addEventListener("submit", addFilm);
   document.addEventListener("DOMContentLoaded", loadAllFilms);
+  cardBody.addEventListener("click", deleteFilm);
+}
+
+function deleteFilm(e){
+  if(e.target.id === "delete-film"){
+    ui.deleteFilmFromUI(e.target);
+  }
 }
 
 function loadAllFilms() {
