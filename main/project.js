@@ -5,9 +5,6 @@ const url = document.querySelector("#url");
 const cardBody = document.querySelectorAll(".card-body")[1];
 const clearFilms = document.getElementById("clear-films");
 
-const ui = new UI();
-const storage = new Storage();
-
 eventListeners();
 
 function eventListeners() {
@@ -19,26 +16,26 @@ function eventListeners() {
 
 function clearAllFilms() {
   if (confirm("Are you sure, you want to delete all films?")) {
-    ui.clearAllFilmsFromUI();
-    storage.clearAllFilmsFromStorage();
+    UI.clearAllFilmsFromUI();
+    Storage.clearAllFilmsFromStorage();
   }
 }
 
 function deleteFilm(e) {
   if (e.target.id === "delete-film") {
-    ui.deleteFilmFromUI(e.target);
+    UI.deleteFilmFromUI(e.target);
     const t =
       e.target.parentElement.previousElementSibling.previousElementSibling
         .textContent;
-    storage.deleteFilmFromStorage(t);
-    ui.displayMessages("Deleted", "success");
+        Storage.deleteFilmFromStorage(t);
+    UI.displayMessages("Deleted", "success");
   }
 }
 
 function loadAllFilms() {
-  let films = storage.getFilmsFromStorage();
+  let films = Storage.getFilmsFromStorage();
   for (let i = 0; i < films.length; i++) {
-    ui.addFilmToUI(films[i]);
+    UI.addFilmToUI(films[i]);
   }
 }
 
@@ -48,12 +45,12 @@ function addFilm(e) {
   const d = director.value;
   const u = url.value;
   if (t === "" || director === "" || url === "") {
-    ui.displayMessages("Error occured", "danger");
+    UI.displayMessages("Error occured", "danger");
   } else {
     const newFilm = new Film(t, d, u);
-    ui.addFilmToUI(newFilm);
-    storage.addFilmToStorage(newFilm);
-    ui.displayMessages("Success", "success");
-    ui.clearInputs(title, director, url);
+    UI.addFilmToUI(newFilm);
+    Storage.addFilmToStorage(newFilm);
+    UI.displayMessages("Success", "success");
+    UI.clearInputs(title, director, url);
   }
 }
