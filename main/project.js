@@ -18,6 +18,9 @@ function eventListeners() {
 function deleteFilm(e){
   if(e.target.id === "delete-film"){
     ui.deleteFilmFromUI(e.target);
+    const t = e.target.parentElement.previousElementSibling.previousElementSibling.textContent;
+    storage.deleteFilmFromStorage(t);
+    ui.displayMessages("Deleted", "success");
   }
 }
 

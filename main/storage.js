@@ -15,3 +15,13 @@ Storage.prototype.addFilmToStorage = function (newFilm) {
   films.push(newFilm);
   localStorage.setItem("films", JSON.stringify(films));
 };
+
+Storage.prototype.deleteFilmFromStorage = function (title) {
+  let films = this.getFilmsFromStorage();
+  for (let i = 0; i < films.length; i++) {
+    if (films[i].title === title) {
+      films.splice(i, 1);
+    }
+  }
+  localStorage.setItem("films", JSON.stringify(films));
+};
