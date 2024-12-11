@@ -31,3 +31,10 @@ UI.prototype.displayMessages = function (message, type) {
 UI.prototype.deleteFilmFromUI = function(target){
   target.parentElement.parentElement.remove();
 }
+
+UI.prototype.clearAllFilmsFromUI = function(){
+  const filmList = document.getElementById("films");
+  while(filmList.firstElementChild != null){
+    filmList.firstElementChild.remove();
+  }
+}
